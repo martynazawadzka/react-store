@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <Container>
         <p>
-          Shop © 2020 <br /> Designed by Andrzej
+          Shop © 2020 <br /> Designed by Martyna
         </p>
       </Container>
     </footer>
