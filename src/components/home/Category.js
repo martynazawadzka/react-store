@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Product from '../shared/Product';
 
 const Category = props => {
@@ -18,6 +18,10 @@ const Category = props => {
       </div>
     </section>
   );
+};
+
+Category.propTypes = {
+  products: PropTypes.array
 };
 
 export default Category;

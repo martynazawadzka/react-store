@@ -6,7 +6,7 @@ const Paragraph = props => {
 };
 
 Paragraph.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string.isRequired
 };
 
 export default Paragraph;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductsService from '../../services/productsService';
 
 const producentsOptions = ['All', ...ProductsService.getProducents()];
@@ -62,5 +63,9 @@ class SearchPanel extends React.Component {
     );
   }
 }
+
+SearchPanel.propTypes = {
+  onOptionChange: PropTypes.func
+};
 
 export default SearchPanel;
