@@ -1,54 +1,73 @@
-import React from 'react';
-import ProductsService from '../../services/productsService';
+import React, { useEffect, useState } from "react";
+import ProductsService from "../../services/productsService";
 
-import Container from '../shared/Container';
-import Title from '../shared/PageTitle';
-import SearchPanel from './SearchPanel';
-import Product from '../shared/Product';
+import Container from "../shared/Container";
+import Title from "../shared/PageTitle";
+import SearchPanel from "./SearchPanel";
+import Product from "../shared/Product";
 
-const products = ProductsService.getProducts();
+const Catalog = ({ getProducts, products, isLoading, isError }) => {
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-class Catalog extends React.Component {
-  constructor() {
-    super();
-    this.state = { products };
+  useEffect(() => {
+    if (!tempProducts.length && !tempProductsStatus && products.length) {
+      setTempProducts(products);
+      setTempProductsStatus(true);
+    }
+  });
+
+  const [tempProducts, setTempProducts] = useState(products);
+  const [tempProductsStatus, setTempProductsStatus] = useState(false);
+
+  if (isError) {
+    return <h2>Error while loading... :(</h2>;
   }
-  updateProducts = (producent, name) => {
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  const updateProducts = (producent, name) => {
     let filteredProducts = products;
 
-    if (producent !== 'All') {
-      filteredProducts = ProductsService.filterByProducent(producent);
+    if (producent !== "All") {
+      filteredProducts = ProductsService.filterByProducent(producent, filteredProducts);
     }
 
     if (name) {
       filteredProducts = ProductsService.filterByName(name, filteredProducts);
     }
-    this.setState({ products: filteredProducts });
+
+    setTempProducts(filteredProducts);
   };
-  render() {
-    return (
-      <Container>
-        <Title title="Catalog" />
 
-        <div className="catalog">
-          <SearchPanel onOptionChange={this.updateProducts} />
+  const producentsOptions = ProductsService.getProducents(products);
 
-          <div className="column-right">
-            <div className="products">
-              {this.state.products.map(product => (
-                <Product
-                  name={product.name}
-                  price={product.amount}
-                  image={product.image}
-                  key={product.id}
-                />
-              ))}
-            </div>
+  return (
+    <Container>
+      <Title title="Catalog" />
+      <div className="catalog">
+        <SearchPanel
+          onOptionChange={updateProducts}
+          producentsOptions={producentsOptions}
+        />
+        <div className="column-right">
+          <div className="products">
+            {tempProducts.map(product => (
+              <Product
+                name={product.name}
+                price={product.amount}
+                image={product.image}
+                key={product.id}
+              />
+            ))}
           </div>
         </div>
-      </Container>
-    );
-  }
-}
+      </div>
+    </Container>
+  );
+};
 
 export default Catalog;

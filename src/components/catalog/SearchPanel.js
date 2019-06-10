@@ -1,68 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ProductsService from '../../services/productsService';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const producentsOptions = ['All', ...ProductsService.getProducents()];
-const initialState = { producent: 'All', text: '' };
+const initialState = { producent: "All", text: "" };
 
-class SearchPanel extends React.Component {
-  constructor() {
-    super();
-    this.state = initialState;
-  }
-  updateText = e => {
-    this.setState({ text: e.target.value });
-    this.props.onOptionChange(this.state.producent, e.target.value);
+const SearchPanel = ({ producentsOptions, onOptionChange }) => {
+  const [producent, setProducent] = useState(initialState.producent);
+  const [text, setText] = useState(initialState.text);
+  const updateText = e => {
+    setText(e.target.value);
+    onOptionChange(producent, e.target.value);
   };
-  updateProducent = e => {
-    this.setState({ producent: e.target.value });
-    this.props.onOptionChange(e.target.value, this.state.text);
+  const updateProducent = e => {
+    setProducent(e.target.value);
+    onOptionChange(e.target.value, text);
   };
-  clearState = () => {
-    this.setState(initialState);
-    this.props.onOptionChange(initialState.producent, initialState.text);
+  const clearState = () => {
+      setText(initialState.text);
+      setProducent(initialState.producent);
+    onOptionChange(initialState.producent, initialState.text);
   };
-  render() {
-    return (
-      <div className="column-left">
-        <div className="filter">
-          <div className="filter-header">
-            <h4>Search</h4>
-            <button className="clear" onClick={this.clearState}>
-              Clear
-            </button>
-          </div>
-          <div>
-            <input
-              onChange={this.updateText}
-              type="text"
-              placeholder="search..."
-              value={this.state.text}
-            />
-          </div>
-          <h4>Manufacturer</h4>
-          <div>
-            {producentsOptions.map((option, index) => {
-              return (
-                <div key={index}>
-                  <input
-                    type="radio"
-                    name="manufacturere"
-                    id={option}
-                    value={option}
-                    onChange={this.updateProducent}
-                    checked={this.state.producent === option}
-                  />
-                  <label>{option}</label>
-                </div>
-              );
-            })}
-          </div>
+  return (
+    <div className="column-left">
+      <div className="filter">
+        <div className="filter-header">
+          <h4>Search</h4>
+          <button className="clear" onClick={clearState}>
+          Clear
+          </button>
+        </div>
+        <div>
+          <input
+          onChange={updateText}
+          type="text"
+          placeholder="search..."
+          value={text}
+          />
+        </div>
+        <h4>Manufacturer</h4>
+        <div>
+          {producentsOptions.map((option, index) => {
+            return (
+              <div key={index}>
+                <input
+                type="radio"
+                name="manufacturere"
+                id={option}
+                value={option}
+                onChange={updateProducent}
+                checked={producent === option}
+                />
+                <label>{option}</label>
+              </div>
+            );
+          })}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 SearchPanel.propTypes = {
   onOptionChange: PropTypes.func

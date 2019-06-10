@@ -1,32 +1,28 @@
-import products from '../data/products';
-
 class ProductsService {
-  static getProducts() {
-    return products;
-  }
-
-  static getFeaturedDesktops() {
+  static getFeaturedDesktops(products) {
     return products.filter(
-      product => product.category === 'desktop' && product.featured
+      product => product.category === "desktop" && product.featured
     );
   }
 
-  static getFeaturedTablets() {
+  static getFeaturedTablets(products) {
     return products.filter(
-      product => product.category === 'tablet' && product.featured
+      product => product.category === "tablet" && product.featured
     );
   }
 
-  static getProducents() {
-    return products
+  static getProducents(products) {
+    const producents = products
       .map(product => product.manufacture)
       .filter(
         (manufacture, index, manufactures) =>
           manufactures.indexOf(manufacture) === index
       );
+
+    return ['All', ...producents];
   }
 
-  static filterByProducent(producent) {
+  static filterByProducent(producent, products) {
     return products.filter(product => product.manufacture === producent);
   }
 
