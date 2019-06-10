@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Product = props => {
   return (
@@ -7,6 +7,7 @@ const Product = props => {
       <img src={props.image} alt={props.name} />
       <p className="price">${props.price}</p>
       <h3>{props.name}</h3>
+      <button className="add-button">Add to cart</button>
     </div>
   );
 };

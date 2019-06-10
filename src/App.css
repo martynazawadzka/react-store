@@ -101,6 +101,19 @@ footer {
   color: #00a1b4;
   padding: 3px 0px;
 }
+
+.add-button {
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  color: #00a1b4;
+  background-color: #fff;
+  border-radius: 25px;
+  border: 1px solid #00a1b4;
+}
+
+.add-button:focus {
+  outline: none;
+}
 /* Products */
 
 /* Catalog */
