@@ -5,18 +5,16 @@ import Home from "../components/home/Home";
 import { getProducts } from "../actions";
 
 const mapStateToProps = state => ({
-    products: state.products,
-    isLoading: state.isLoading,
-    isError: state.isError,
+  productsData: state.productsData
 });
 
 const mapDispatchToProps = {
-    getProducts
+  getProducts
 };
 
 const HomeContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Home);
 
 export default HomeContainer;

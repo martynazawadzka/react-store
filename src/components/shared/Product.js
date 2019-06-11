@@ -1,13 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Product = props => {
+const Product = ({ price, name, image, addToCart }) => {
+  const addProductToCart = () => {
+    addToCart({ name, price });
+  };
+
   return (
     <div className="product">
-      <img src={props.image} alt={props.name} />
-      <p className="price">${props.price}</p>
-      <h3>{props.name}</h3>
-      <button className="add-button">Add to cart</button>
+      <img src={image} alt={name} />
+      <p className="price">${price}</p>
+      <h3>{name}</h3>
+      <button className="add-button" onClick={addProductToCart}>
+        Add to cart
+      </button>
     </div>
   );
 };

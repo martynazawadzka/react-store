@@ -36,6 +36,8 @@ body {
 /* Navbars */
 .navbar {
   position: relative;
+  display: flex;
+  align-items: center;
   min-height: 50px;
   background-color: #0b102b;
 }
@@ -51,13 +53,21 @@ body {
   float: left;
 }
 
-.nav > li > a {
+.nav > li > a, .cart-info {
   font-size: 16px;
   font-weight: 100;
   padding: 15px 35px;
   color: #fff;
   display: block;
   text-decoration: none;
+}
+
+.cart-info {
+   color: #fff;
+ }
+
+.cart-info-line {
+  margin: 0;
 }
 
 /* Navbars */

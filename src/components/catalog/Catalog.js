@@ -4,9 +4,12 @@ import ProductsService from "../../services/productsService";
 import Container from "../shared/Container";
 import Title from "../shared/PageTitle";
 import SearchPanel from "./SearchPanel";
-import Product from "../shared/Product";
+import ProductContainer from "../../containers/ProductContainer";
 
-const Catalog = ({ getProducts, products, isLoading, isError }) => {
+const Catalog = ({
+  getProducts,
+  productsData: { products, isError, isLoading }
+}) => {
   useEffect(() => {
     getProducts();
   }, []);
@@ -33,7 +36,10 @@ const Catalog = ({ getProducts, products, isLoading, isError }) => {
     let filteredProducts = products;
 
     if (producent !== "All") {
-      filteredProducts = ProductsService.filterByProducent(producent, filteredProducts);
+      filteredProducts = ProductsService.filterByProducent(
+        producent,
+        filteredProducts
+      );
     }
 
     if (name) {
@@ -56,7 +62,7 @@ const Catalog = ({ getProducts, products, isLoading, isError }) => {
         <div className="column-right">
           <div className="products">
             {tempProducts.map(product => (
-              <Product
+              <ProductContainer
                 name={product.name}
                 price={product.amount}
                 image={product.image}

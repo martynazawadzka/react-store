@@ -3,7 +3,8 @@ import {API_URL} from "../consts/consts";
 export const ACTION_TYPES = {
     PRODUCTS_FETCH: "PRODUCTS_FETCH",
     PRODUCTS_FETCH_SUCCESS : "PRODUCTS_FETCH_SUCCESS",
-    PRODUCTS_FETCH_ERROR: "PRODUCTS_FETCH_ERROR"
+    PRODUCTS_FETCH_ERROR: "PRODUCTS_FETCH_ERROR",
+    ADD_TO_CART: "ADD_TO_CART"
 };
 
 export const fetchProducts = () => ({
@@ -32,3 +33,8 @@ export const getProducts = () => {
         }
     };
 };
+
+export const addToCart = product => (dispatch) => dispatch({
+    type: ACTION_TYPES.ADD_TO_CART,
+    product
+});

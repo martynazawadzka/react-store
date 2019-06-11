@@ -5,9 +5,7 @@ import Catalog from "../components/catalog/Catalog";
 import { getProducts } from "../actions";
 
 const mapStateToProps = state => ({
-    products: state.products,
-    isLoading: state.isLoading,
-    isError: state.isError
+    productsData: state.productsData,
 });
 
 const mapDispatchToProps = {

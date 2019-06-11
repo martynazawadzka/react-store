@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import "./App.css";
-import Header from "./components/shared/Header";
+import HeaderContainer from "./containers/HeaderContainer";
 import HomePage from "./pages/home";
 import CatalogPage from "./pages/catalog";
 import About from "./components/about/About";
@@ -13,7 +13,7 @@ import store from "./store";
 const App = () => {
   return (
     <Provider store={store}>
-      <Header />
+      <HeaderContainer />
       <Route exact path="/" component={HomePage} />
       <Route path="/catalog" component={CatalogPage} />
       <Route path="/about" component={About} />
