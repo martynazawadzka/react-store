@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from '../shared/Product';
 
-const Category = props => {
+const Category = ({title, products}) => {
   return (
     <section>
-      <h2 className="header-small">{props.title}</h2>
+      <h2 className="header-small">{title}</h2>
       <div className="products">
-        {props.products.map(product => (
+        {products.map(product => (
           <Product
             image={product.image}
             price={product.amount}
