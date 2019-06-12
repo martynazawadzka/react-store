@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Product from '../shared/Product';
+import Product from '../../containers/ProductContainer';
 
 const Category = ({title, products}) => {
   return (
